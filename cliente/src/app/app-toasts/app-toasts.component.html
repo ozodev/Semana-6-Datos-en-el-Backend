@@ -1,0 +1,6 @@
+<ng-container *ngFor="let toast of toastService.toasts; trackBy: trackToast">
+    <ngb-toast
+      [class]="toast.classname"
+    >{{toast.mensaje}}
+    </ngb-toast>
+</ng-container>

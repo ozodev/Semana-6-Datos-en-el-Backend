@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from './auth-service.service';
+import { ToastService } from './toast.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,7 @@ export class AppComponent {
   registroForm: FormGroup;
   loginForm: FormGroup;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private toastService:ToastService) {
     this.registroForm = new FormGroup({
       user: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required]),
@@ -40,14 +41,14 @@ export class AppComponent {
     if (this.registroForm.valid && this.registroForm.value.password === this.registroForm.value.confirmPassword) {
       this.authService.register(this.registroForm.value.user, this.registroForm.value.password).subscribe({
         next: (response) => {
-          console.log('Registro exitoso', response);
+          this.showSuccess(response.mensaje)
         },
         error: (error) => {
-          console.error('Error en el registro', error);
+          this.showDanger(error.error.mensaje);
         }
       });
     } else if (this.registroForm.value.password !== this.registroForm.value.confirmPassword) {
-      console.error('Las contraseñas no coinciden');
+      this.showDanger('Las contraseñas no coinciden');
     }
   }
 
@@ -55,13 +56,25 @@ export class AppComponent {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value.user, this.loginForm.value.password).subscribe({
         next: (response) => {
-          console.log('Login exitoso', response.mensaje);
+          this.showSuccess(response.mensaje)
         },
         error: (error) => {
-          console.error('Error en el login', error.error.mensaje);
+          this.showDanger(error.error.mensaje);
         }
       });
     }
   }
+
+	showSuccess(mensaje:string) {
+		this.toastService.show({ mensaje, classname: 'bg-success text-light m-2', delay: 10000 });
+	}
+
+	showDanger(mensaje:string) {
+		this.toastService.show({ mensaje, classname: 'bg-danger text-light m-2', delay: 10000 });
+	}
+
+	ngOnDestroy(): void {
+		this.toastService.clear();
+	}
 
 }

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
 <body>
+  <app-toasts aria-live="polite" aria-atomic="true"></app-toasts>
   <div class="position-absolute top-50 start-50 translate-middle position-relative wrapper" [ngClass]="{'animar-registro':verRegistro,'animar-login':verLogin}">
     <div class="position-absolute shadow w-100 h-100 position-relative rounded-1 form-wrapper sing-up">
 
@@ -52,5 +53,6 @@
 
     </div>
   </div>
+
 </body>
 </html>
