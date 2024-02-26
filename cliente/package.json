@@ -1,5 +1,5 @@
 {
-  "proyect": "taller-semana-6",
+  "name": "taller_semana_6",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",

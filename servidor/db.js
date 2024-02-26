@@ -3,7 +3,7 @@ const fs = require('fs');
 const path = require('path');
 
 // Creamos carpeta de base de datos
-const dbDir = path.join(__dirname, 'database');
+const dbDir = path.join(__dirname+'/../', 'database');
 if (!fs.existsSync(dbDir)) fs.mkdirSync(dbDir, { recursive: true });
 
 // Creamos o cargamos y conectamos a la base de datos sqlite
