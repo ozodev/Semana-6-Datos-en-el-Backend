@@ -8,18 +8,19 @@
 <body>
   <div class="position-absolute top-50 start-50 translate-middle position-relative wrapper" [ngClass]="{'animar-registro':verRegistro,'animar-login':verLogin}">
     <div class="position-absolute shadow w-100 h-100 position-relative rounded-1 form-wrapper sing-up">
-      <form class="position-absolute top-50 start-50 translate-middle" method="post">
+
+      <form class="position-absolute top-50 start-50 translate-middle" [formGroup]="registroForm" (ngSubmit)="onSubmitRegister()">
         <h2 class="fw-bold text-center text-secondary">Crear una Cuenta</h2>
         <div class="position-relative input-group">
-          <input class="w-100 text-secondary bg-transparent border-1 border-secondary rounded-2" type="email" name="user" required>
+          <input formControlName="user" class="w-100 text-secondary bg-transparent border-1 border-secondary rounded-2" type="email" name="user" placeholder="" required>
           <label class="position-absolute top-50 translate-middle-y text-secondary" for="user">Correo</label>
         </div>
         <div class="position-relative input-group">
-          <input class="w-100 text-secondary bg-transparent border-1 border-secondary rounded-2" type="text" name="password" required>
+          <input formControlName="password" class="w-100 text-secondary bg-transparent border-1 border-secondary rounded-2" type="text" name="password" placeholder="" required>
           <label class="position-absolute top-50 translate-middle-y text-secondary" for="user">Contraseña</label>
         </div>
         <div class="position-relative input-group">
-          <input class="w-100 text-secondary bg-transparent border-1 border-secondary rounded-2" type="text" name="password" required>
+          <input formControlName="confirmPassword" class="w-100 text-secondary bg-transparent border-1 border-secondary rounded-2" type="text" name="password" placeholder="" required>
           <label class="position-absolute top-50 translate-middle-y text-secondary" for="user">Confirmar Contraseña</label>
         </div>
         <button type="submit" class="position-relative top-0 start-0 w-100 shadow rounded-2 border-0 text-light btn">Registrarse</button>
@@ -28,16 +29,18 @@
             class="text-decoration-none fw-bold" (click)="visualizarLogin()"> Inicia Sesion</a></p>
         </div>
       </form>
+
     </div>
     <div class="position-absolute shadow w-100 h-100 position-relative rounded-1 form-wrapper sing-in">
-      <form class="position-absolute top-50 start-50 translate-middle" method="post">
+
+      <form class="position-absolute top-50 start-50 translate-middle" [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
         <h2 class="fw-bold text-center text-secondary">Login</h2>
         <div class="position-relative input-group">
-            <input class="w-100 text-secondary bg-transparent border-1 border-secondary rounded-2" type="email" name="user" required>
+            <input formControlName="user" class="w-100 text-secondary bg-transparent border-1 border-secondary rounded-2" type="email" name="user" placeholder="" required>
             <label class="position-absolute top-50 translate-middle-y text-secondary" for="user">Correo</label>
         </div>
         <div class="position-relative input-group">
-          <input class="w-100 text-secondary bg-transparent border-1 border-secondary rounded-2" type="text" name="password" required>
+          <input formControlName="password" class="w-100 text-secondary bg-transparent border-1 border-secondary rounded-2" type="text" name="password" placeholder="" required>
           <label class="position-absolute top-50 translate-middle-y text-secondary" for="user">Contraseña</label>
         </div>
         <button type="submit" class="position-relative top-0 start-0 w-100 shadow rounded-2 border-0 text-light btn">Iniciar Sesion</button>
@@ -46,6 +49,7 @@
             class="text-decoration-none fw-bold" (click)="visualizarRegistro()"> Registrate</a></p>
         </div>
       </form>
+
     </div>
   </div>
 </body>
